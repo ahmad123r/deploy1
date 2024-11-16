@@ -1,0 +1,25 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: suspicious-events-detector
+  labels:
+    app: suspicious-events-detector
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: suspicious-events-detector
+  template:
+    metadata:
+      labels:
+        app: suspicious-events-detector
+    spec:
+      containers:
+      - name: suspicious-events-detector
+        image: your-dockerhub-username/suspicious-events-detector:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: "prod"
